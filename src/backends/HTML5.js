@@ -177,7 +177,9 @@ class HTML5Backend {
     const handleDragStart = (e) => this.handleDragStart(e, sourceId);
     const handleSelectStart = (e) => this.handleSelectStart(e, sourceId);
 
-    node.setAttribute('draggable', true);
+    if(!node.hasAttribute('draggable')) {
+      node.setAttribute('draggable', true);
+    }
     node.addEventListener('dragstart', handleDragStart);
     node.addEventListener('selectstart', handleSelectStart);
 
@@ -187,7 +189,9 @@ class HTML5Backend {
 
       node.removeEventListener('dragstart', handleDragStart);
       node.removeEventListener('selectstart', handleSelectStart);
-      node.setAttribute('draggable', false);
+      if(!node.hasAttribute('draggable')) {
+        node.setAttribute('draggable', false);
+      }
     };
   }
 
